@@ -16,8 +16,8 @@ MODULEDIR?=/lib/modules/$(shell uname -r)/kernel/drivers/usb/misc
 # Where the DKMS files will be installed
 DKMSDIR?=/usr/src/razer-drivers-$(VERSION)
 
-# Specify the udev rules directory
-UDEVRULESDIR?=/lib/udev/rules.d
+# Specify the udev directory
+UDEVDIR?=/lib/udev
 
 
 # Build all target
@@ -71,9 +71,11 @@ uninstall_dkms: udev_uninstall
 udev_install:
 	@echo "\n::\033[34m Installing Razer udev rules\033[0m"
 	@echo "====================================================="
-	install -m 644 -v -D udev/99-razer.rules $(DESTDIR)/$(UDEVRULESDIR)/99-razer.rules
+	install -m 644 -v -D udev/99-razer.rules $(DESTDIR)/$(UDEVDIR)/rules.d/99-razer.rules
+	install -m 755 -v -D udev/razer_mount $(DESTDIR)/$(UDEVDIR)/razer_mount
 
 udev_uninstall:
 	@echo "\n::\033[34m Uninstalling Razer udev rules\033[0m"
 	@echo "====================================================="
-	rm -fv $(DESTDIR)/$(UDEVRULESDIR)/99-razer.rules
+	rm -fv $(DESTDIR)/$(UDEVDIR)/rules.d/99-razer.rules
+	rm -fv $(DESTDIR)/$(UDEVDIR)/razer_mount
