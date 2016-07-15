@@ -10,6 +10,9 @@ DRIVERDIR?=$(shell pwd)/src
 # Where kernel drivers are going to be installed
 MODULEDIR?=/lib/modules/$(shell uname -r)/kernel/drivers/usb/misc
 
+# Where the DKMS files will be installed
+DKMSDIR=/usr/src/razer-drivers-1.0.0
+
 
 # Build all target
 all: driver
@@ -39,3 +42,21 @@ uninstall:
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razerkbd.ko
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razermouse.ko
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razerfirefly.ko
+
+# Install DKMS files
+install_dkms:
+	@echo "\n::\033[34m Installing DKMS files\033[0m"
+	@echo "====================================================="
+	install -m 644 -v -D Makefile $(DESTDIR)/$(DKMSDIR)/Makefile
+	install -m 644 -v -D dkms/dkms.conf $(DESTDIR)/$(DKMSDIR)/dkms.conf
+	install -m 755 -v -d src $(DESTDIR)/$(DKMSDIR)/src
+	install -m 644 -v -D src/Makefile $(DESTDIR)/$(DKMSDIR)/src/Makefile
+	install -m 644 -v src/*.c $(DESTDIR)/$(DKMSDIR)/src/
+	install -m 644 -v src/*.h $(DESTDIR)/$(DKMSDIR)/src/
+	rm -fv $(DESTDIR)/$(DKMSDIR)/src/*.mod.c
+
+# Uninstall DKMS files
+uninstall_dkms:
+	@echo "\n::\033[34m Uninstalling DKMS files\033[0m"
+	@echo "====================================================="
+	rm -rfv $(DESTDIR)/$(DKMSDIR)
