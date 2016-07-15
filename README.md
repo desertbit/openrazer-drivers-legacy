@@ -1,6 +1,7 @@
 # Razer Drivers
 
 This repository holds the source code for the linux kernel drivers to support various Razer Chroma devices.
+All notable changes to this project will be documented in the [CHANGELOG.md](CHANGELOG.md) file.
 
 
 ## Installation
