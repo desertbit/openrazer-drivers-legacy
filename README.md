@@ -1,25 +1,23 @@
 # Razer Drivers
 
-This repository holds the source code for the linux kernel drivers to support various Razer Chroma devices.
+This repository holds the source code for the linux kernel drivers to support various Razer devices.
 All notable changes to this project will be documented in the **[CHANGELOG.md](CHANGELOG.md)** file.
 
 ## Supported Devices
-### Keyboard Support:
- * Razer Blackwidow Classic *(all lighting modes)*
- * Razer Blackwidow Ultimate 2012 *(all lighting modes)*
- * Razer Blackwidow Ultimate 2013 *(all lighting modes)*
- * Razer Blackwidow Chroma *(all lighting modes)*
- * Razer Blackwidow Chroma Tournament Edition *(all lighting modes)*
- * Razer Blade Stealth *(all lighting modes)*
- * Razer Blade 14 2016 *(Currently in Development...)*
- * Razer Blackwidow Ultimate 2016 (all bar custom lighting)
 
-### Mousemat Support:
- * Razer Firefly *(all lighting modes)*
-
-### Mouse Support:
- * Razer Mamba *(all lighting modes)*
- * Razer Abyssus (all modes bar the refresh rate)
+| NAME                                       | TYPE     | DRIVER SUPPORT                             |
+|:-------------------------------------------|:---------|:-------------------------------------------|
+| Razer Firefly                              | Mousemat | all lighting modes                         |
+| Razer Mamba                                | Mouse    | all lighting modes                         |
+| Razer Abyssus                              | Mouse    | all modes bar the refresh rate             |
+| Razer Blackwidow Classic                   | Keyboard | all lighting modes                         |
+| Razer Blackwidow Ultimate 2012             | Keyboard | all lighting modes                         |
+| Razer Blackwidow Ultimate 2013             | Keyboard | all lighting modes                         |
+| Razer Blackwidow Chroma                    | Keyboard | all lighting modes                         |
+| Razer Blackwidow Chroma Tournament Edition | Keyboard | all lighting modes                         |
+| Razer Blackwidow Ultimate 2016             | Keyboard | all bar custom lighting                    |
+| Razer Blade Stealth                        | Keyboard | all lighting modes                         |
+| Razer Blade 14 2016                        | Keyboard | partially all lighting modes - In Progress |
 
 
 ## Installation
