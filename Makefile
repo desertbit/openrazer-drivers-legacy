@@ -14,7 +14,10 @@ DRIVERDIR?=$(shell pwd)/src
 MODULEDIR?=/lib/modules/$(shell uname -r)/kernel/drivers/usb/misc
 
 # Where the DKMS files will be installed
-DKMSDIR=/usr/src/razer-drivers-$(VERSION)
+DKMSDIR?=/usr/src/razer-drivers-$(VERSION)
+
+# Specify the udev rules directory
+UDEVRULESDIR?=/lib/udev/rules.d
 
 
 # Build all target
@@ -31,7 +34,7 @@ clean:
 	make -C $(KERNELDIR) SUBDIRS=$(DRIVERDIR) clean
 
 # Install kernel modules
-install:
+install: udev_install
 	@echo "\n::\033[34m Installing Razer kernel modules\033[0m"
 	@echo "====================================================="
 	@install -v -D -m 644 -g root -o root $(DRIVERDIR)/razerkbd.ko $(DESTDIR)/$(MODULEDIR)/razerkbd.ko
@@ -39,15 +42,15 @@ install:
 	@install -v -D -m 644 -g root -o root $(DRIVERDIR)/razerfirefly.ko $(DESTDIR)/$(MODULEDIR)/razerfirefly.ko
 
 # Remove kernel modules
-uninstall:
+uninstall: udev_uninstall
 	@echo "\n::\033[34m Uninstalling Razer kernel modules\033[0m"
 	@echo "====================================================="
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razerkbd.ko
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razermouse.ko
 	@rm -f $(DESTDIR)/$(MODULEDIR)/razerfirefly.ko
 
-# Install DKMS files
-install_dkms:
+# DKMS
+install_dkms: udev_install
 	@echo "\n::\033[34m Installing DKMS files\033[0m"
 	@echo "====================================================="
 	install -m 644 -v -D Makefile $(DESTDIR)/$(DKMSDIR)/Makefile
@@ -59,8 +62,18 @@ install_dkms:
 	rm -fv $(DESTDIR)/$(DKMSDIR)/src/*.mod.c
 	sed -i -e 's/VERSION_SET_BY_MAKEFILE/$(VERSION)/g' $(DESTDIR)/$(DKMSDIR)/dkms.conf
 
-# Uninstall DKMS files
-uninstall_dkms:
+uninstall_dkms: udev_uninstall
 	@echo "\n::\033[34m Uninstalling DKMS files\033[0m"
 	@echo "====================================================="
 	rm -rfv $(DESTDIR)/$(DKMSDIR)
+
+# UDEV
+udev_install:
+	@echo "\n::\033[34m Installing Razer udev rules\033[0m"
+	@echo "====================================================="
+	install -m 644 -v -D udev/99-razer.rules $(DESTDIR)/$(UDEVRULESDIR)/99-razer.rules
+
+udev_uninstall:
+	@echo "\n::\033[34m Uninstalling Razer udev rules\033[0m"
+	@echo "====================================================="
+	rm -fv $(DESTDIR)/$(UDEVRULESDIR)/99-razer.rules
