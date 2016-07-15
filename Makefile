@@ -1,3 +1,6 @@
+# The project version
+VERSION=1.0.0
+
 # DESTDIR is used to install into a different root directory
 DESTDIR?=/
 
@@ -11,7 +14,7 @@ DRIVERDIR?=$(shell pwd)/src
 MODULEDIR?=/lib/modules/$(shell uname -r)/kernel/drivers/usb/misc
 
 # Where the DKMS files will be installed
-DKMSDIR=/usr/src/razer-drivers-1.0.0
+DKMSDIR=/usr/src/razer-drivers-$(VERSION)
 
 
 # Build all target
@@ -54,6 +57,7 @@ install_dkms:
 	install -m 644 -v src/*.c $(DESTDIR)/$(DKMSDIR)/src/
 	install -m 644 -v src/*.h $(DESTDIR)/$(DKMSDIR)/src/
 	rm -fv $(DESTDIR)/$(DKMSDIR)/src/*.mod.c
+	sed -i -e 's/VERSION_SET_BY_MAKEFILE/$(VERSION)/g' $(DESTDIR)/$(DKMSDIR)/dkms.conf
 
 # Uninstall DKMS files
 uninstall_dkms:
