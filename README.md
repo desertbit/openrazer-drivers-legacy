@@ -11,6 +11,7 @@ All notable changes to this project will be documented in the **[CHANGELOG.md](C
  * Razer Blackwidow Chroma *(all lighting modes)*
  * Razer Blackwidow Chroma Tournament Edition *(all lighting modes)*
  * Razer Blade Stealth *(all lighting modes)*
+ * Razer Blade Stealth *(Currently in Development...)*
  * Razer Blackwidow Ultimate 2016 (all bar custom lighting)
 
 ### Mousemat Support:
