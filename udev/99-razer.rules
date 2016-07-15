@@ -21,4 +21,4 @@ SUBSYSTEM=="hid", DRIVER=="hid-generic", ENV{is_razer_kbd}=="yes", ATTRS{bInterf
 SUBSYSTEM=="hid", DRIVER=="hid-generic", ENV{is_razer_mouse}=="yes", ATTRS{bInterfaceNumber}=="00", RUN+="razer_mount razermouse $kernel"
 SUBSYSTEM=="hid", DRIVER=="hid-generic", ENV{is_razer_firefly}=="yes", ATTRS{bInterfaceNumber}=="00", RUN+="razer_mount razerfirefly $kernel"
 
-KERNEL=="event[0-9]*", GROUP:="plugdev"
+KERNEL=="event[0-9]*", SUBSYSTEM=="input"
