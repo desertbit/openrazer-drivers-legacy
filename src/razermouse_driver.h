@@ -19,28 +19,26 @@
 #ifndef __HID_RAZER_MOUSE_H
 #define __HID_RAZER_MOUSE_H
 
-#ifndef USB_VENDOR_ID_RAZER
-#define USB_VENDOR_ID_RAZER 0x1532
-#endif
 
-#ifndef USB_DEVICE_ID_RAZER_MAMBA
- #define USB_DEVICE_ID_RAZER_MAMBA 0x0045
-#endif
+//#################//
+//### Constants ###//
+//#################//
 
-#ifndef USB_DEVICE_ID_RAZER_ABYSSUS
- #define USB_DEVICE_ID_RAZER_ABYSSUS 0x0042
-#endif
+#define USB_DEVICE_ID_RAZER_MAMBA 0x0045
+#define USB_DEVICE_ID_RAZER_ABYSSUS 0x0042
 
-/* Each keyboard report has 90 bytes*/
-#define RAZER_REPORT_LEN 0x5A
 #define RAZER_MAMBA_ROW_LEN 15
-
 
 #define RAZER_MOUSE_WAIT_MIN_US 600
 #define RAZER_MOUSE_WAIT_MAX_US 800
 
+
+
+//#############//
+//### Types ###//
+//#############//
+
 struct razer_mouse_device {
-    //struct input_dev *dev;
     struct usb_device *usbdev;
     struct hid_device *hiddev;
     unsigned char effect;

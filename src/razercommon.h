@@ -20,8 +20,21 @@
 #define DRIVER_RAZERCOMMON_H_
 
 
-/* Each USB report has 90 bytes*/
+//#################//
+//### Constants ###//
+//#################//
+
+// The Razer vendor ID
+#define USB_VENDOR_ID_RAZER 0x1532
+
+// Each USB report has 90 bytes
 #define RAZER_USB_REPORT_LEN 0x5A
+
+
+
+//#############//
+//### Types ###//
+//#############//
 
 struct razer_report;
 
@@ -74,6 +87,12 @@ struct razer_report {
     unsigned char crc;/*xor'ed bytes of report*/
     unsigned char reserved; /*0x0*/
 };
+
+
+
+//#################//
+//### Functions ###//
+//#################//
 
 int razer_send_control_msg(struct usb_device *usb_dev,void const *data, uint report_index, ulong wait_min, ulong wait_max);
 int razer_get_usb_response(struct usb_device *usb_dev, uint report_index, struct razer_report* request_report, uint response_index, struct razer_report* response_report, ulong wait_min, ulong wait_max);

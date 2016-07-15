@@ -27,10 +27,11 @@
 #include "razermouse_driver.h"
 #include "razercommon.h"
 
+
 /*
  * Version Information
  */
-#define DRIVER_VERSION "0.1"
+
 #define DRIVER_AUTHOR "Terry Cain <terry@terrys-home.co.uk>"
 #define DRIVER_DESC "USB HID Razer Mouse"
 #define DRIVER_LICENSE "GPL v2"
@@ -41,7 +42,7 @@ MODULE_LICENSE(DRIVER_LICENSE);
 
 
 /**
- * Send report to the keyboard
+ * Send report to the mouse
  */
 int razer_set_report(struct usb_device *usb_dev,void const *data) {
     return razer_send_control_msg(usb_dev, data, 0x00, RAZER_MOUSE_WAIT_MIN_US, RAZER_MOUSE_WAIT_MAX_US);
@@ -204,7 +205,7 @@ int razer_is_charging(struct usb_device *usb_dev)
 
 
 /**
- * Set row colour on the keyboard
+ * Set row colour on the mouse
  *
  * This sets the colour of the LED segments on the mouse. Takes in an array of RGB bytes.
  *
@@ -243,7 +244,7 @@ int razer_set_logo_mode(struct usb_device *usb_dev, unsigned char enable)
 }
 
 /**
- * Get macro on the keyboard
+ * Get macro on the mouse
  *
  * Supported by:
  *   Razer Abyssus
@@ -443,7 +444,7 @@ int razer_set_brightness(struct usb_device *usb_dev, unsigned char brightness)
 }
 
 /**
- * Get brightness of the keyboard
+ * Get brightness of the mouse
  *
  * Supported by:
  *   Razer Mamba

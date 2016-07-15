@@ -31,7 +31,7 @@
 /*
  * Version Information
  */
-#define DRIVER_VERSION "0.2"
+
 #define DRIVER_AUTHOR "Tim Theede <pez2001@voyagerproject.de>"
 #define DRIVER_DESC "USB HID Razer BlackWidow Chroma"
 #define DRIVER_LICENSE "GPL v2"
@@ -57,11 +57,11 @@ MODULE_LICENSE(DRIVER_LICENSE);
  * Send report to the keyboard
  */
 int razer_set_report(struct usb_device *usb_dev,void const *data) {
-    return razer_send_control_msg(usb_dev, data, 0x02, RAZER_BLACKWIDOW_CHROMA_WAIT_MIN_US, RAZER_BLACKWIDOW_CHROMA_WAIT_MAX_US);
+    return razer_send_control_msg(usb_dev, data, 0x02, RAZER_KBD_WAIT_MIN_US, RAZER_KBD_WAIT_MAX_US);
 }
 
 int razer_get_report(struct usb_device *usb_dev, struct razer_report *request_report, struct razer_report *response_report) {
-    return razer_get_usb_response(usb_dev, 0x02, request_report, 0x02, response_report, RAZER_BLACKWIDOW_CHROMA_WAIT_MIN_US, RAZER_BLACKWIDOW_CHROMA_WAIT_MAX_US);
+    return razer_get_usb_response(usb_dev, 0x02, request_report, 0x02, response_report, RAZER_KBD_WAIT_MIN_US, RAZER_KBD_WAIT_MAX_US);
 }
 
 

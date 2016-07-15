@@ -30,27 +30,16 @@
 /*
  * Version Information
  */
-#define DRIVER_VERSION "0.2"
+
 #define DRIVER_AUTHOR "Tim Theede <pez2001@voyagerproject.de>"
-#define DRIVER_DESC "USB HID Razer BlackWidow Chroma"
+#define DRIVER_DESC "USB HID Razer Firefly"
 #define DRIVER_LICENSE "GPL v2"
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE(DRIVER_LICENSE);
 
-/*
 
-    TODO:
-
-        restore store rgb profile (helpful for event-animations etc)
-        #coloritup update
-
-    future todos:
-
-        read keystroke stats etc.
-
-*/
 
 /**
  * Send report to the firefly

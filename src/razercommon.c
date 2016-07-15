@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
- 
+
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/module.h>
@@ -30,7 +30,7 @@
  * USUALLY index = 0x02
  * FIREFLY is 0
  */
-int razer_send_control_msg(struct usb_device *usb_dev,void const *data, uint report_index, ulong wait_min, ulong wait_max)
+int razer_send_control_msg(struct usb_device *usb_dev, void const *data, uint report_index, ulong wait_min, ulong wait_max)
 {
 	uint request = HID_REQ_SET_REPORT; // 0x09
 	uint request_type = USB_TYPE_CLASS | USB_RECIP_INTERFACE | USB_DIR_OUT; // 0x21
@@ -41,7 +41,9 @@ int razer_send_control_msg(struct usb_device *usb_dev,void const *data, uint rep
 
     buf = kmemdup(data, size, GFP_KERNEL);
     if (buf == NULL)
+    {
         return -ENOMEM;
+    }
 
     // Send usb control message
     len = usb_control_msg(usb_dev, usb_sndctrlpipe(usb_dev, 0),
@@ -56,9 +58,13 @@ int razer_send_control_msg(struct usb_device *usb_dev,void const *data, uint rep
     // Wait
     usleep_range(wait_min, wait_max);
 
+    // Free the memory again.
     kfree(buf);
+
     if(len!=size)
+    {
         printk(KERN_WARNING "razer driver: Device data transfer failed.");
+    }
 
     return ((len < 0) ? len : ((len != size) ? -EIO : 0));
 }
@@ -110,7 +116,7 @@ int razer_get_usb_response(struct usb_device *usb_dev, uint report_index, struct
     usleep_range(wait_min, wait_max);
 
     // Error if report is wrong length
-    if(len != 90)
+    if(len != RAZER_USB_REPORT_LEN)
     {
         printk(KERN_WARNING "razer driver: Invalid USB repsonse. USB Report length: %d\n", len);
         result = 1;
