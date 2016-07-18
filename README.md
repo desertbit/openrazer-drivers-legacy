@@ -1,6 +1,6 @@
 # Razer Drivers
 
-**This repository contains the legacy razer drivers source based on the razer_chroma_drivers project. Due to code quality issues a complete rewrite can be found [here](https://github.com/openrazer/razer-drivers)**
+**This repository contains the legacy razer drivers source based on the [razer_chroma_drivers](https://github.com/pez2001/razer_chroma_drivers) project. Due to code quality issues a complete rewrite can be found [here](https://github.com/openrazer/razer-drivers)**
 
 This repository holds the source code for the linux kernel drivers to support various Razer devices.
 All notable changes to this project will be documented in the **[CHANGELOG.md](CHANGELOG.md)** file.
